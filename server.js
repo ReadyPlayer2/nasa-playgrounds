@@ -12,7 +12,7 @@ app.get('/image', async function (req, res) {
     const response = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${API_KEY}&date=2019-03-21`);
     const imageJson = await response.json();
 
-    res.send(response.url);
+    res.send(imageJson.url);
 });
 
 app.listen(PORT, () => console.log(`Express JS listening on port ${PORT}`));
