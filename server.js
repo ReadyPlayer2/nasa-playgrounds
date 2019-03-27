@@ -1,9 +1,11 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const fetch = require('node-fetch');
 const PORT = process.env.PORT || 5000;
 const API_KEY = process.env.API_KEY;
 const bodyParser = require('body-parser');
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
