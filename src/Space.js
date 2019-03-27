@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
+import './Space.css';
 
-class Space extends React.Component {
+class Space extends Component {
     state = {
         url: '',
         hdurl: '',
@@ -13,27 +14,27 @@ class Space extends React.Component {
 
     componentDidMount() {
         this.callApi()
-        .then(res => {
-            this.setState({
-                url: res.url,
-                hdurl: res.hdurl,
-                title: res.title,
-                explanation: res.explanation,
-                date: res.date,
-                copyright: res.copyright,
-                hasError: false
+            .then(res => {
+                this.setState({
+                    url: res.url,
+                    hdurl: res.hdurl,
+                    title: res.title,
+                    explanation: res.explanation,
+                    date: res.date,
+                    copyright: res.copyright,
+                    hasError: false
+                })
             })
-        })
-        .catch(err => {
-            this.setState({ hasError: true });
-            console.log(err);
-        });
+            .catch(err => {
+                this.setState({ hasError: true });
+                console.log(err);
+            });
     }
 
     callApi = async () => {
         const response = await fetch('/image');
         const body = await response.json();
-        
+
         return body;
     }
 
@@ -44,7 +45,11 @@ class Space extends React.Component {
 
         return (
             <div>
-                <img src={this.state.url} alt={this.state.explanation} />
+                <header className='space-header'>
+                    <div>
+                        <img src={this.state.url} alt={this.state.explanation} className='space-image' style={{ resizeMode: 'contain' }} />
+                    </div>
+                </header>
             </div>
         )
     }
