@@ -2,7 +2,7 @@
 To use this application you will need to sign up for a free API key.  
 All the details can be found in the [NASA Open APIs documentation](https://api.nasa.gov/api.html#authentication).  
 
-The API used by this application is the APOD (Astronomy Picture of the Day).
+The API used by this application is the [APOD (Astronomy Picture of the Day)](https://github.com/nasa/apod-api).
 
 ---
 
