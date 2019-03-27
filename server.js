@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', function (req, res) {
-    res.send('Hello World!')
+    res.redirect('/space');
 });
 
 app.get('/image', async function (req, res) {
@@ -19,6 +19,10 @@ app.get('/image', async function (req, res) {
     const imageJson = await response.json();
 
     res.send(imageJson);
+});
+
+app.get('/space', function (req, res) {
+    res.send('Hello Space');
 });
 
 app.listen(PORT, () => console.log(`Express JS listening on port ${PORT}`));
