@@ -1,13 +1,23 @@
-.space-header {
-    background-color: #282c34;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.space-image {
+    /* allow image to shrink but not stretch */
+    max-width: 100%;
+    height: auto;
+    border-radius: 28px;
+    display: block;
+    margin: 0 auto;
 }
 
-.space-image {
-    max-height: 100vh;
-    max-width: 100vw;
+.row {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+.col {
+    flex: auto;
+    text-align: center;
+}
+
+.container {
+    background-color: slategray;
 }

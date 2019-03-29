@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import './Space.css';
+import Image from 'react-bootstrap/Image';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 class Space extends Component {
     state = {
@@ -42,15 +46,30 @@ class Space extends Component {
         if (this.state.hasError) {
             return <h1>Something went wrong.</h1>;
         }
-
+        
         return (
-            <div>
-                <header className='space-header'>
-                    <div>
-                        <img src={this.state.url} alt={this.state.explanation} className='space-image' style={{ resizeMode: 'contain' }} />
-                    </div>
-                </header>
-            </div>
+            <Container>
+                <Row>
+                    <Col>
+                        <Image src={this.state.url} alt={this.state.explanation} className='space-image'/>
+                    </Col>
+                    <Col>
+                        <Image src={this.state.url} alt={this.state.explanation} className='space-image'/>
+                    </Col>
+                    <Col>
+                        <Image src={this.state.url} alt={this.state.explanation} className='space-image'/>
+                    </Col>
+                    <Col>
+                        <Image src={this.state.url} alt={this.state.explanation} className='space-image'/>
+                    </Col>
+                    <Col>
+                        <Image src={this.state.url} alt={this.state.explanation} className='space-image'/>
+                    </Col>
+                    <Col>
+                        <Image src={this.state.url} alt={this.state.explanation} className='space-image'/>
+                    </Col>
+                </Row>
+            </Container>
         )
     }
 }
