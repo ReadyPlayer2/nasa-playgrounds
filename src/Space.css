@@ -1,15 +1,19 @@
 .space-image {
-    max-height: 100vh;
-    max-width: 100vw;
+    max-height: 33vh;
+    max-width: 33vw;
     border-radius: 8px;
-}
-
-.col {
-    flex-basis: auto;
-    flex-grow: 1;
+    margin-top: 5px;
 }
 
 .row {
     display: flex;
-    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.col {
+    flex: auto;
+}
+
+.container {
+    background-color: darkgrey;
 }

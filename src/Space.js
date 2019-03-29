@@ -76,6 +76,17 @@ class Space extends Component {
                         <Image src={this.state.url} alt={this.state.explanation} className='space-image'/>
                     </Col>
                 </Row>
+                <Row>
+                    <Col>
+                        <Image src={this.state.url} alt={this.state.explanation} className='space-image'/>
+                    </Col>
+                    <Col>
+                        <Image src={this.state.url} alt={this.state.explanation} className='space-image'/>
+                    </Col>
+                    <Col>
+                        <Image src={this.state.url} alt={this.state.explanation} className='space-image'/>
+                    </Col>
+                </Row>
             </Container>
         )
     }
