@@ -15,8 +15,11 @@ app.get('/', function (req, res) {
 });
 
 app.get('/image', async function (req, res) {
-    const response = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${API_KEY}&date=2019-03-22`);
+    const response = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${API_KEY}&count=5`);
     const imageJson = await response.json();
+
+    // Log the number of remaining requests
+    console.log(response.headers.get('X-RateLimit-Remaining'));
 
     res.send(imageJson);
 });

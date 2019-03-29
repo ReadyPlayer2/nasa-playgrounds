@@ -7,26 +7,31 @@ import Col from 'react-bootstrap/Col';
 
 class Space extends Component {
     state = {
-        url: '',
-        hdurl: '',
-        title: '',
-        explanation: '',
-        date: '',
-        copyright: '',
-        hasError: false
+        images: []
     }
 
     componentDidMount() {
         this.callApi()
             .then(res => {
+                let images = [];
+
+                // iterate over all returned images and store details in state
+                for (let i = 0; i < res.length; i++) {
+                    const imageObj = {
+                        url: res[i]['url'],
+                        hdurl: res[i]['hdurl'],
+                        title: res[i]['title'],
+                        explanation: res[i]['explanation'],
+                        date: res[i]['date'],
+                        copyright: res[i]['copyright'],
+                        media_type: res[i]['media_type']
+                    }
+
+                    images.push(imageObj);
+                }
+
                 this.setState({
-                    url: res.url,
-                    hdurl: res.hdurl,
-                    title: res.title,
-                    explanation: res.explanation,
-                    date: res.date,
-                    copyright: res.copyright,
-                    hasError: false
+                    images: images
                 })
             })
             .catch(err => {
@@ -50,24 +55,12 @@ class Space extends Component {
         return (
             <Container>
                 <Row>
-                    <Col>
-                        <Image src={this.state.url} alt={this.state.explanation} className='space-image'/>
-                    </Col>
-                    <Col>
-                        <Image src={this.state.url} alt={this.state.explanation} className='space-image'/>
-                    </Col>
-                    <Col>
-                        <Image src={this.state.url} alt={this.state.explanation} className='space-image'/>
-                    </Col>
-                    <Col>
-                        <Image src={this.state.url} alt={this.state.explanation} className='space-image'/>
-                    </Col>
-                    <Col>
-                        <Image src={this.state.url} alt={this.state.explanation} className='space-image'/>
-                    </Col>
-                    <Col>
-                        <Image src={this.state.url} alt={this.state.explanation} className='space-image'/>
-                    </Col>
+                    {/* Iterate over image list and display each one */}
+                    {this.state.images.map(image => (
+                        <Col key={image.url}>
+                            <Image src={image.url} alt={image.explanation} className='space-image'/>
+                        </Col>
+                    ))}
                 </Row>
             </Container>
         )
