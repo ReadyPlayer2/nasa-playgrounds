@@ -1,19 +1,23 @@
 .space-image {
-    max-height: 33vh;
-    max-width: 33vw;
-    border-radius: 8px;
-    margin-top: 5px;
+    /* allow image to shrink but not stretch */
+    max-width: 100%;
+    height: auto;
+    border-radius: 28px;
+    display: block;
+    margin: 0 auto;
 }
 
 .row {
     display: flex;
+    flex-flow: row wrap;
     justify-content: space-around;
 }
 
 .col {
     flex: auto;
+    text-align: center;
 }
 
 .container {
-    background-color: darkgrey;
+    background-color: slategray;
 }

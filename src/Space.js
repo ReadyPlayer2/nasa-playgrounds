@@ -50,11 +50,6 @@ class Space extends Component {
         return (
             <Container>
                 <Row>
-                    <Col>1</Col>
-                    <Col>2</Col>
-                    <Col>3</Col>
-                </Row>
-                <Row>
                     <Col>
                         <Image src={this.state.url} alt={this.state.explanation} className='space-image'/>
                     </Col>
@@ -64,19 +59,6 @@ class Space extends Component {
                     <Col>
                         <Image src={this.state.url} alt={this.state.explanation} className='space-image'/>
                     </Col>
-                </Row>
-                <Row>
-                    <Col>
-                        <Image src={this.state.url} alt={this.state.explanation} className='space-image'/>
-                    </Col>
-                    <Col>
-                        <Image src={this.state.url} alt={this.state.explanation} className='space-image'/>
-                    </Col>
-                    <Col>
-                        <Image src={this.state.url} alt={this.state.explanation} className='space-image'/>
-                    </Col>
-                </Row>
-                <Row>
                     <Col>
                         <Image src={this.state.url} alt={this.state.explanation} className='space-image'/>
                     </Col>
