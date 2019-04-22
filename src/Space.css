@@ -21,3 +21,14 @@
 .container {
     background-color: slategray;
 }
+
+input {
+    margin: 5px;
+    border-radius: 5px;
+    width: 200px;
+    height: 25px;
+}
+
+.App-content {
+    background-color: slategray;
+}

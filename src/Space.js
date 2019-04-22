@@ -7,9 +7,16 @@ import Col from 'react-bootstrap/Col';
 import ReactPlayer from 'react-player';
 
 class Space extends Component {
-    state = {
-        images: []
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            images: []
+        }
+
+        this.handleChange = this.handleChange.bind(this);
     }
+    
 
     componentDidMount() {
         this.callApi()
@@ -41,6 +48,12 @@ class Space extends Component {
             });
     }
 
+    handleChange(event) {
+        this.setState({
+          [event.target.name]: event.target.value,
+        })
+      }
+
     callApi = async () => {
         const response = await fetch('/image');
         const body = await response.json();
@@ -52,13 +65,13 @@ class Space extends Component {
         if (image.media_type === 'image') {
             return (
                 <Col key={image.url}>
-                    <Image src={image.url} alt={image.explanation} className='space-image'/>
+                    <Image src={image.url} alt={image.explanation} className='space-image' />
                 </Col>
             );
         } else if (image.media_type === 'video') {
             return (
                 <Col key={image.url}>
-                    <ReactPlayer url={image.url} controls className='space-image'/>
+                    <ReactPlayer url={image.url} controls className='space-image' />
                 </Col>
             );
         } else {
@@ -72,16 +85,19 @@ class Space extends Component {
         if (this.state.hasError) {
             return <h1>Something went wrong.</h1>;
         }
-        
+
         return (
-            <Container>
-                <Row>
-                    {/* Iterate over image list and display each one */}
-                    {this.state.images.map(image => (
-                        this.getCol(image)
-                    ))}
-                </Row>
-            </Container>
+            <div className='App-content'>
+                <input type='text' name='userApiKey' placeholder='Paste API key here' onChange={this.handleChange}/>
+                <Container>
+                    <Row>
+                        {/* Iterate over image list and display each one */}
+                        {this.state.images.map(image => (
+                            this.getCol(image)
+                        ))}
+                    </Row>
+                </Container>
+            </div>
         )
     }
 }
