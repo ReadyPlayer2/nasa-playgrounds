@@ -15,7 +15,13 @@ app.get('/', function (req, res) {
 });
 
 app.get('/image', async function (req, res) {
-    const response = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${API_KEY}&count=5`);
+    var response;
+    if (req.query.api_key != null) {
+        response = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${req.query.api_key}&count=5`);
+    } else {
+        response = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${API_KEY}&count=5`);
+    }
+    
     const imageJson = await response.json();
 
     // Log the number of remaining requests

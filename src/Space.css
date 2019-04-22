@@ -21,3 +21,31 @@
 .container {
     background-color: slategray;
 }
+
+.api_key {
+    margin: 5px;
+    border-radius: 5px;
+    width: 500px;
+    height: 25px;
+    opacity: 0.5;
+    position: fixed;
+    z-index: 1;
+    text-align: center;
+}
+
+.submit {
+    margin: 5px;
+    border-radius: 5px;
+    opacity: 0.5;
+    position: fixed;
+    z-index: 1;
+    text-align: center;
+}
+
+input:hover {
+    opacity: 0.75;
+}
+
+.App-content {
+    background-color: slategray;
+}
