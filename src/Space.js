@@ -15,8 +15,9 @@ class Space extends Component {
         }
 
         this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
-    
+
 
     componentDidMount() {
         this.callApi()
@@ -50,14 +51,25 @@ class Space extends Component {
 
     handleChange(event) {
         this.setState({
-          [event.target.name]: event.target.value,
+            [event.target.name]: event.target.value,
         })
-      }
+    }
+
+    handleSubmit(event) {
+        this.componentDidMount();
+
+        event.preventDefault();
+    }
 
     callApi = async () => {
-        const response = await fetch('/image');
+        var response;
+        if (this.state.userApiKey != null) {
+            let keyQuery = '?api_key=' + this.state.userApiKey;
+            response = await fetch('/image' + keyQuery);
+        } else {
+            response = await fetch('/image');
+        }
         const body = await response.json();
-
         return body;
     }
 
@@ -88,7 +100,18 @@ class Space extends Component {
 
         return (
             <div className='App-content'>
-                <input type='text' name='userApiKey' placeholder='Paste API key here' onChange={this.handleChange}/>
+                <Container>
+                    <Row>
+                        <Col>
+                            <input type='text' name='userApiKey' placeholder='Paste API key here' onChange={this.handleChange} className='api_key' />
+                        </Col>
+                        <Col>
+                            <form onSubmit={this.handleSubmit}>
+                                <input type="submit" value="Go!" className='submit' />
+                            </form>
+                        </Col>
+                    </Row>
+                </Container>
                 <Container>
                     <Row>
                         {/* Iterate over image list and display each one */}
