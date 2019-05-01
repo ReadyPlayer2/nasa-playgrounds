@@ -7,6 +7,7 @@
    <img alt="Issues" src="https://img.shields.io/github/issues/ReadyPlayer2/nasa-playgrounds.svg" />
   </a>
 </p>
+
 An application to call the NASA [APOD (Astronomy Picture of the Day)](https://github.com/nasa/apod-api) API to and display returned images and videos. To use this application you will need to sign up for a free API key.  
 All the details can be found in the [NASA Open APIs documentation](https://api.nasa.gov/api.html#authentication).  
 
