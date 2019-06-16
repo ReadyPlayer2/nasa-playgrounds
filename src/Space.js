@@ -23,7 +23,7 @@ class Space extends Component {
         this.callApi()
             .then(res => {
                 this.setState({
-                    images: res
+                    images: this.state.images.concat(res)
                 })
             })
             .catch(err => {
