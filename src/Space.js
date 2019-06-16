@@ -22,10 +22,8 @@ class Space extends Component {
     componentDidMount() {
         this.callApi()
             .then(res => {
-                let images = res;
-
                 this.setState({
-                    images: images
+                    images: res
                 })
             })
             .catch(err => {

@@ -28,7 +28,6 @@ app.get('/image', async function (req, res) {
     console.log(response.headers.get('X-RateLimit-Remaining'));
 
     res.send(createImageObjectArray(imageJson));
-    // res.send(imageJson);
 });
 
 var createImageObjectArray = function (res) {
