@@ -22,22 +22,7 @@ class Space extends Component {
     componentDidMount() {
         this.callApi()
             .then(res => {
-                let images = [];
-
-                // iterate over all returned images and store details in state
-                for (let i = 0; i < res.length; i++) {
-                    const imageObj = {
-                        url: res[i]['url'],
-                        hdurl: res[i]['hdurl'],
-                        title: res[i]['title'],
-                        explanation: res[i]['explanation'],
-                        date: res[i]['date'],
-                        copyright: res[i]['copyright'],
-                        media_type: res[i]['media_type']
-                    }
-
-                    images.push(imageObj);
-                }
+                let images = res;
 
                 this.setState({
                     images: images

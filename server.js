@@ -27,7 +27,29 @@ app.get('/image', async function (req, res) {
     // Log the number of remaining requests
     console.log(response.headers.get('X-RateLimit-Remaining'));
 
-    res.send(imageJson);
+    res.send(createImageObjectArray(imageJson));
+    // res.send(imageJson);
 });
+
+var createImageObjectArray = function (res) {
+    let images = [];
+
+    // iterate over all returned images and store details in state
+    for (let i = 0; i < res.length; i++) {
+        const imageObj = {
+            url: res[i]['url'],
+            hdurl: res[i]['hdurl'],
+            title: res[i]['title'],
+            explanation: res[i]['explanation'],
+            date: res[i]['date'],
+            copyright: res[i]['copyright'],
+            media_type: res[i]['media_type']
+        }
+
+        images.push(imageObj);
+    }
+
+    return images;
+}
 
 app.listen(PORT, () => console.log(`Express JS listening on port ${PORT}`));
