@@ -13,6 +13,8 @@ All the details can be found in the [NASA Open APIs documentation](https://api.n
 
 The API used by this application is the [APOD (Astronomy Picture of the Day)](https://github.com/nasa/apod-api).
 
+![](images/screenshot.png)
+
 ## Running the application
 1. Clone this repository `git clone git@github.com:ReadyPlayer2/nasa-playgrounds.git`.
 2. Install dependencies `npm install`.
