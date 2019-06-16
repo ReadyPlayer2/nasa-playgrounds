@@ -11,25 +11,40 @@ class Space extends Component {
         super(props);
 
         this.state = {
-            images: []
+            images: [],
+            isLoading: false
         }
-
+        
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleScroll = this.handleScroll.bind(this);
     }
 
-
     componentDidMount() {
+        this.setState({
+            isLoading: true
+        })
         this.callApi()
             .then(res => {
                 this.setState({
-                    images: this.state.images.concat(res)
+                    images: this.state.images.concat(res),
+                    isLoading: false
                 })
             })
             .catch(err => {
                 this.setState({ hasError: true });
                 console.log(err);
             });
+
+        window.addEventListener('scroll', this.handleScroll);
+    }
+
+    handleScroll(event) {
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+            this.componentDidMount();
+        }
+
+        event.preventDefault();
     }
 
     handleChange(event) {
