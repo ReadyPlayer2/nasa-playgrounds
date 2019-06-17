@@ -41,7 +41,7 @@ class Space extends Component {
     }
 
     handleScroll(event) {
-        // // prevent double loading by only allowing the scroll event to fire once
+        // prevent double loading by only allowing the scroll event to fire once
         if (!this.state.isLoading) {
             if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
                 this.componentDidMount();
