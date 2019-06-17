@@ -5,6 +5,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import ReactPlayer from 'react-player';
+import _ from 'lodash';
 
 class Space extends Component {
     constructor(props) {
@@ -14,7 +15,7 @@ class Space extends Component {
             images: [],
             isLoading: false
         }
-        
+
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleScroll = this.handleScroll.bind(this);
@@ -36,12 +37,15 @@ class Space extends Component {
                 console.log(err);
             });
 
-        window.addEventListener('scroll', this.handleScroll);
+        window.addEventListener('scroll', _.debounce(this.handleScroll, 5000, { leading: true }));
     }
 
     handleScroll(event) {
-        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-            this.componentDidMount();
+        // // prevent double loading by only allowing the scroll event to fire once
+        if (!this.state.isLoading) {
+            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+                this.componentDidMount();
+            }
         }
 
         event.preventDefault();
@@ -97,7 +101,7 @@ class Space extends Component {
         }
 
         return (
-            <div className='App-content'>
+            <div>
                 <Container>
                     <Row>
                         <Col>
@@ -116,6 +120,13 @@ class Space extends Component {
                         {this.state.images.map(image => (
                             this.getCol(image)
                         ))}
+                    </Row>
+                </Container>
+                <Container>
+                    <Row>
+                        <Col>
+                            <div className='loading' hidden={!this.state.isLoading}></div>
+                        </Col>
                     </Row>
                 </Container>
             </div>

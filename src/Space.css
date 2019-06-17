@@ -18,10 +18,6 @@
     text-align: center;
 }
 
-.container {
-    background-color: slategray;
-}
-
 .api_key {
     margin: 5px;
     border-radius: 5px;
@@ -46,6 +42,25 @@ input:hover {
     opacity: 0.75;
 }
 
-.App-content {
+.loading {
+    border: 16px solid #cac5c5; /* Light grey */
+    border-top: 16px solid #67696b; /* Blue */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    position: absolute;
+    left: 50%;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
     background-color: slategray;
 }
