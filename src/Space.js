@@ -22,9 +22,6 @@ class Space extends Component {
     }
 
     componentDidMount() {
-        this.setState({
-            isLoading: true
-        })
         this.callApi()
             .then(res => {
                 this.setState({
@@ -37,18 +34,24 @@ class Space extends Component {
                 console.log(err);
             });
 
-        window.addEventListener('scroll', _.debounce(this.handleScroll, 5000, { leading: true }));
+        window.addEventListener('scroll', this.handleScroll);
     }
 
     handleScroll(event) {
-        // prevent double loading by only allowing the scroll event to fire once
-        if (!this.state.isLoading) {
-            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-                this.componentDidMount();
-            }
+        event.preventDefault();
+        
+        // don't do anything if we're already loading more content
+        if (this.state.isLoading) {
+            return false;
         }
 
-        event.preventDefault();
+        // load more content if we've reached the bottom of the page
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+            this.setState({
+                isLoading: true
+            })
+            this.componentDidMount();
+        }
     }
 
     handleChange(event) {
