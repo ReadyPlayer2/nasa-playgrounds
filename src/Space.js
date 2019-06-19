@@ -14,16 +14,13 @@ class Space extends Component {
             images: [],
             isLoading: false
         }
-        
+
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleScroll = this.handleScroll.bind(this);
     }
 
     componentDidMount() {
-        this.setState({
-            isLoading: true
-        })
         this.callApi()
             .then(res => {
                 this.setState({
@@ -40,11 +37,20 @@ class Space extends Component {
     }
 
     handleScroll(event) {
-        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-            this.componentDidMount();
+        event.preventDefault();
+        
+        // don't do anything if we're already loading more content
+        if (this.state.isLoading) {
+            return false;
         }
 
-        event.preventDefault();
+        // load more content if we've reached the bottom of the page
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+            this.setState({
+                isLoading: true
+            })
+            this.componentDidMount();
+        }
     }
 
     handleChange(event) {
@@ -97,7 +103,7 @@ class Space extends Component {
         }
 
         return (
-            <div className='App-content'>
+            <div>
                 <Container>
                     <Row>
                         <Col>
@@ -116,6 +122,13 @@ class Space extends Component {
                         {this.state.images.map(image => (
                             this.getCol(image)
                         ))}
+                    </Row>
+                </Container>
+                <Container>
+                    <Row>
+                        <Col>
+                            <div className='loading' hidden={!this.state.isLoading}></div>
+                        </Col>
                     </Row>
                 </Container>
             </div>
